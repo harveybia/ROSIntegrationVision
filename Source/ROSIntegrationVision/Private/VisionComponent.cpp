@@ -330,7 +330,7 @@ void UVisionComponent::TickComponent(float DeltaTime,
 		TFPublisher->Publish(TFImageFrame);
 
 		// Publish optical frame
-		FRotator CameraLinkRotator(0.0, -90.0, 90.0);
+		FRotator CameraLinkRotator(0.0, -90.0, 270.0);
 		FQuat CameraLinkQuaternion(CameraLinkRotator);
 
 		TSharedPtr<ROSMessages::tf2_msgs::TFMessage> TFOpticalFrame(new ROSMessages::tf2_msgs::TFMessage());
