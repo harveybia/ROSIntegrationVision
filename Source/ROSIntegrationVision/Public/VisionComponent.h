@@ -48,7 +48,7 @@ public:
   UPROPERTY(BlueprintReadWrite, Category = "Vision Component")
     FString ImageFrame = TEXT("/unreal_ros/image_frame");
   UPROPERTY(BlueprintReadWrite, Category = "Vision Component")
-    FString ImageOpticalFrame = TEXT("/blaser_camera");
+    FString ImageOpticalFrame = TEXT("/unreal_ros/image_optical_frame");
     
   UPROPERTY(Transient, EditAnywhere, Category = "Vision Component")
     UTopic * CameraInfoPublisher;
