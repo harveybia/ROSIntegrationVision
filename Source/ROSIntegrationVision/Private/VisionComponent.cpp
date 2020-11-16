@@ -211,13 +211,13 @@ void UVisionComponent::TickComponent(float DeltaTime,
 	FVector Translation = GetComponentLocation();
 	FQuat Rotation = GetComponentQuat();
 	// Convert to meters and ROS coordinate system
-	Priv->Buffer->HeaderWrite->Translation.X = Translation.X / 100.0f;
-	Priv->Buffer->HeaderWrite->Translation.Y = -Translation.Y / 100.0f;
+	Priv->Buffer->HeaderWrite->Translation.X = -Translation.X / 100.0f;
+	Priv->Buffer->HeaderWrite->Translation.Y = Translation.Y / 100.0f;
 	Priv->Buffer->HeaderWrite->Translation.Z = Translation.Z / 100.0f;
 	Priv->Buffer->HeaderWrite->Rotation.X = -Rotation.X;
 	Priv->Buffer->HeaderWrite->Rotation.Y = Rotation.Y;
-	Priv->Buffer->HeaderWrite->Rotation.Z = -Rotation.Z;
-	Priv->Buffer->HeaderWrite->Rotation.W = Rotation.W;
+	Priv->Buffer->HeaderWrite->Rotation.Z = Rotation.Z;
+	Priv->Buffer->HeaderWrite->Rotation.W = -Rotation.W;
 
 	// Start writing to buffer
 	Priv->Buffer->StartWriting(ObjectToColor, ObjectColors);
@@ -297,9 +297,9 @@ void UVisionComponent::TickComponent(float DeltaTime,
 
 	Priv->Buffer->DoneReading();
 
-	double x = Priv->Buffer->HeaderRead->Translation.X;
-	double y = Priv->Buffer->HeaderRead->Translation.Y;
-	double z = Priv->Buffer->HeaderRead->Translation.Z;
+	double x = Priv->Buffer->HeaderRead->Translation.X / 10.0;
+	double y = Priv->Buffer->HeaderRead->Translation.Y / 10.0;
+	double z = Priv->Buffer->HeaderRead->Translation.Z / 10.0;
 	double rx = Priv->Buffer->HeaderRead->Rotation.X;
 	double ry = Priv->Buffer->HeaderRead->Rotation.Y;
 	double rz = Priv->Buffer->HeaderRead->Rotation.Z;
